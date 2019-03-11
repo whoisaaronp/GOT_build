@@ -1,0 +1,4 @@
+(() => {
+	//sub
+	console.log('fired');
+})();
