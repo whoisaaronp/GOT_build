@@ -33,7 +33,7 @@ main {
 	height:360px;
 	background-color:grey;
 	margin:0 auto;
-	/*overflow:hidden;*/
+	overflow:hidden;
 }
 
 #houseImages { position:relative; width:4000px; transition: all .5s; }
@@ -96,28 +96,43 @@ main {
 	transform:scale(1.2, 1.2);
 }
 
-/* hide the lightbox */
 /* add styles here for lightbox and video */
-.lightbox
-{
-	display:none;
+.lightbox {
+	display: none;
 	position: absolute;
 	text-align: center;
 	width: 100%;
 	top: 0;
 	background-color: rgba(0, 0, 0, 1);
-	height: 100%;
+	height: 100%
+	
 }
 
-/* show the lightbox*/
-.lightbox-on
-{
+.lightbox-on {
 	display: block;
 }
+
+.lightbox-close {
+	position: : absolute;
+	color: white;
+	font-size: 2rem;
+	right: 12px;
+	top: 12px;
+	cursor: pointer;
+}
+
 
 
 video {
 	width: 80%;
 	margin-top: 10%;
 	border: thin solid #949393;
+}
+
+.house-info {
+	color: white;
+	margin-top: 20px;
+	width: 70%;
+	margin: 0 auto;
+	font-size: 20px;
 }

@@ -11,7 +11,7 @@
     <main>
 
     <section id="imageContainer">
-    	<div id="houseImages"> <!-- add in all of the images to make a scrolling "banner" -->
+    	<div id="houseImages" style="right: 0"> <!-- add in all of the images to make a scrolling "banner" -->
     		<img src="images/stark.jpg"/>
     		<img src="images/baratheon.jpg"/>
     		<img src="images/lannister.jpg"/>
@@ -33,15 +33,20 @@
         </ul>
     </nav>
 
-    <h1>clever tagline goes here</h1><!-- replace this with the house name -->
+    <h1 class="house-name">clever tagline goes here</h1>
 
-    <p class="house-info"></p><!-- replace this with house details (github gist) -->
+    <p class="house-info">
+        <!-- this will get replaced when we clicked on a shield -->
+    </p>
 </main>  <!--end mainContainer-->
-<!-- lightbox for highlighted content -->
-    <section class="lightbox">
-        <!-- this will by dynamic shortly -->
-        <video src="video/House-Stark.mp4" controls muted></video>
-    </section>
+
+
+<!-- Lightbox for highlighted content -->
+<section class="lightbox">
+    <span class="lightbox-close">X</span>
+    <video src="video/House-Stark.mp4" controls muted></video>
+</section>
+
 <script src="js/GOT_master.js"></script>
 </body>
 </html>
