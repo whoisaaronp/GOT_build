@@ -19,6 +19,8 @@ h1 {
 	color:white;
 	margin-top:30px;
 	font-size:1.25em;
+	letter-spacing: 0.5em;
+	margin-bottom: 20px;
 }
 
 main {
@@ -113,15 +115,17 @@ main {
 }
 
 .lightbox-close {
-	position: : absolute;
-	color: white;
-	font-size: 2rem;
-	right: 12px;
-	top: 12px;
-	cursor: pointer;
+	position: absolute;
+    color: white;
+    font-size: 2.2rem;
+    top: 122px;
+    right: 124px;
+    padding: 5px 12px 5px;
+    background-color: #990000;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: rotate(45deg);
 }
-
-
 
 video {
 	width: 80%;
@@ -131,8 +135,10 @@ video {
 
 .house-info {
 	color: white;
+	letter-spacing: 0.05em;
+	line-height: 32px;
 	margin-top: 20px;
-	width: 70%;
+	width: 72%;
 	margin: 0 auto;
-	font-size: 20px;
+	font-size: 18px;
 }
