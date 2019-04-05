@@ -7,11 +7,14 @@
 			lbClose = document.querySelector('.lightbox-close'),
 			topBanners = document.querySelector('#houseImages'),
 			tagline = document.querySelector('.house-name'),
-			houseInfo = document.querySelector('.house-info');
+			houseInfo = document.querySelector('.house-info'),
+			targetVideo = '';
+		// This will get the house video 	
+		let targetHouse = '';
+
 
 	const houseData = [
-	[
-	"STARK", `House Stark of Winterfell is a Great House of Westeros, ruling over the vast region known as the North from their seat in Winterfell. It is one of the oldest lines of Westerosi nobility by far, claiming a line of descent stretching back over eight thousand years. Before the Targaryen conquest, as well as during the War of the Five Kings and Daenerys Targaryen's invasion of Westeros, the leaders of House Stark ruled over the region as the Kings in the North.`],
+	["STARK", `House Stark of Winterfell is a Great House of Westeros, ruling over the vast region known as the North from their seat in Winterfell. It is one of the oldest lines of Westerosi nobility by far, claiming a line of descent stretching back over eight thousand years. Before the Targaryen conquest, as well as during the War of the Five Kings and Daenerys Targaryen's invasion of Westeros, the leaders of House Stark ruled over the region as the Kings in the North.`],
 	[`BARATHEON`, `House Baratheon of Storm's End is a legally extinct Great House of Westeros. A cadet branch was formerly the royal house, but House Lannister now controls the throne. House Baratheon traditionally ruled the Stormlands on the eastern coast of Westeros, aptly named for its frequent storms, from their seat of Storm's End. House Baratheon became the royal house of the Seven Kingdoms after Robert Baratheon led a rebellion against the Targaryen dynasty. At the end of the rebellion, Robert ascended the Iron Throne as Robert I and married Cersei Lannister after the death of Lyanna Stark.`],
 	[`LANNISTER`, 
 	`House Lannister of Casterly Rock is one of the Great Houses of Westeros, one of its richest and most powerful families and oldest dynasties. It is also the current royal house of the Seven Kingdoms following the extinction of House Baratheon of King's Landing, which had been their puppet house anyway.The Lannisters rule over the Westerlands. Their seat is Casterly Rock, a massive rocky promontory overlooking the Sunset Sea which has had habitations and fortifications built into it over the millennia. They are the Lords Paramount of the Westerlands and Wardens of the West. As the new royal house, they also rule directly over the Crownlands from their seat of the Red Keep in King's Landing, the traditional seat of the royal family.`],
@@ -32,8 +35,9 @@
 
 	function openLightbox() {
 		// debugger;
-		let targetHouse = this.className.split(" ")[1];
-
+		// I figured if I remove this function below it works.
+		// Also with trevors help I realized i was 99% there missing only a few lines of code.
+		// let targetHouse = this.className.split(" ")[1];
 
 		// this gives us a lowercase house name -> the second class on all of the shields in stark
 		// flip this to uppercase
@@ -41,11 +45,8 @@
 
 		// populate the tagline 
 		// tagline.textContent = `House ${targetVid}`;
-
-		// // populate the house content
+		// populate the house content will change
 		// houseInfo.textContent = houseData[0];
-
-
 		video.src = `video/House-${targetVid}.mp4`;
 		lightbox.classList.add('lightbox-on');
 		video.load();
@@ -55,7 +56,7 @@
 	function closeLightbox() {
 		lightbox.classList.remove('lightbox-on');
 
-		// rewind the current video and oause it
+		// rewind the current video and pause it
 		video.currentTime = 0;
 		video.pause();
 	}
@@ -64,14 +65,22 @@
 		// move the banners to the left so that current house banner is visible
 		const offSet = 600;
 		let currentOffset = this.dataset.offset * offSet;
+		// when i press the individual shield que the video function
+		targetHouse = this.className.split(" ")[1];
 
 		topBanners.style.right = currentOffset + 'px';
-
-		// sigils.forEach(sigil => sigil.addEventListener('click', openLightbox));
-
+		
 		// change the text content on the page 
 		tagline.textContent = `House ${houseData[this.dataset.offset][0]}`;
 		houseInfo.textContent = houseData[this.dataset.offset][1];
+
+	}
+
+	function logEnded() {
+		// listen for the transition ended event when you click a shield open
+		console.log('logEnded');
+		// open the video after the shield is press within .5 of a second.
+		openLightbox();
 
 	}
 
@@ -82,6 +91,7 @@ sigils.forEach(sigil => sigil.addEventListener('click', animateBanners));
 // animate the banners at the top
 // sigils.forEach(sigil => sigil.addEventListener('click', animateBanners));
 
+topBanners.addEventListener('transitionend', logEnded);
 video.addEventListener('ended', closeLightbox);
 lbClose.addEventListener('click', closeLightbox);
 
